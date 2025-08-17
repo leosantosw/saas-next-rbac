@@ -4,12 +4,9 @@ import {
   MongoAbility,
   AbilityBuilder,
 } from '@casl/ability'
-import { permissions } from './permissions'
 import { User } from './model/User'
-import { UserSubject } from './subjects/user'
-import { ProjectSubject } from './subjects/project'
-
-type AppAbilities = UserSubject | ProjectSubject | ['manage', 'all']
+import { permissions } from './permissions'
+import { AppAbilities } from './subjects'
 
 export type AppAbility = MongoAbility<AppAbilities>
 export const createAppAbility = createMongoAbility as CreateAbility<AppAbility>
