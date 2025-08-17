@@ -11,9 +11,9 @@ type definePermissions = (
 
 export const permissions: Record<Roles, definePermissions> = {
   ADMIN(_, { can }) {
-    can('manage', 'all')
+    can('manage', 'User')
   },
   MEMBER(_, { can }) {
-    can('invite', 'User')
+    can('invite', 'Project')
   },
 }
