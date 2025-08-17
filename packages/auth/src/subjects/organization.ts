@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { organizationSchema } from '../model/organization'
 
 export const organizationSubject = z.tuple([
   z.union([
@@ -7,5 +8,5 @@ export const organizationSubject = z.tuple([
     z.literal('update'),
     z.literal('delete'),
   ]),
-  z.literal('Organization'),
+  z.union([z.literal('Organization'), organizationSchema]),
 ])

@@ -4,7 +4,7 @@ import {
   MongoAbility,
   AbilityBuilder,
 } from '@casl/ability'
-import { User } from './model/User'
+import { User } from './model/user'
 import { permissions } from './permissions'
 import { AppAbilities } from './subjects'
 
@@ -20,5 +20,9 @@ export function defineAbilityFor(user: User) {
 
   permissions[user.role](user, builder)
 
-  return builder.build()
+  return builder.build({
+    detectSubjectType: (item) => {
+      return item.__typename
+    },
+  })
 }
