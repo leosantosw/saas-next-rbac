@@ -1,8 +1,8 @@
 import {
-  createMongoAbility,
-  CreateAbility,
-  MongoAbility,
   AbilityBuilder,
+  CreateAbility,
+  createMongoAbility,
+  MongoAbility,
 } from '@casl/ability'
 import { User } from './model/user'
 import { permissions } from './permissions'
@@ -10,6 +10,10 @@ import { AppAbilities } from './subjects'
 
 export type AppAbility = MongoAbility<AppAbilities>
 export const createAppAbility = createMongoAbility as CreateAbility<AppAbility>
+
+export * from './model/organization'
+export * from './model/project'
+export * from './model/user'
 
 export function defineAbilityFor(user: User) {
   const builder = new AbilityBuilder(createAppAbility)
