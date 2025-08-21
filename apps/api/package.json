@@ -6,7 +6,9 @@
   },
   "dependencies": {
     "@fastify/cors": "^11.1.0",
+    "@prisma/client": "6.14.0",
     "@repo/auth": "workspace:*",
+    "bcryptjs": "^3.0.2",
     "fastify": "^5.5.0",
     "fastify-type-provider-zod": "^5.0.3",
     "zod": "^4.0.17"
@@ -15,6 +17,7 @@
     "@repo/eslint-config": "workspace:*",
     "@repo/prettier": "workspace:*",
     "@repo/tsconfig": "workspace:*",
+    "@types/bcryptjs": "^3.0.0",
     "@types/node": "^20.12.6",
     "prisma": "^6.14.0",
     "tsx": "^4.7.2"
