@@ -11,11 +11,13 @@ import fastifySwagger from '@fastify/swagger'
 import { authenticateWithPassword } from './routes/auth/authenticate-with-password'
 import fastifyJwt from '@fastify/jwt'
 import { getProfile } from './routes/auth/get-profile'
+import { errorHandler } from './error-handler'
 
 const app = fastify().withTypeProvider<ZodTypeProvider>()
 
 app.setValidatorCompiler(validatorCompiler)
 app.setSerializerCompiler(serializerCompiler)
+app.setErrorHandler(errorHandler)
 
 app.register(fastifySwagger, {
   openapi: {
@@ -36,7 +38,6 @@ app.register(import('@scalar/fastify-api-reference'), {
 app.register(fastifyJwt, {
   secret: 'my-jwt-secret',
 })
-
 app.register(fastifyCors)
 app.register(createAccount)
 app.register(authenticateWithPassword)

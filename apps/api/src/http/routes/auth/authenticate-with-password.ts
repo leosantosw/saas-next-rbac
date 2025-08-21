@@ -1,3 +1,4 @@
+import { BadRequestError } from '@/http/routes/errors/bad-request-error'
 import { prisma } from '@/lib/prisma'
 import { compare } from 'bcryptjs'
 import { FastifyInstance } from 'fastify'
@@ -34,13 +35,13 @@ export async function authenticateWithPassword(app: FastifyInstance) {
       })
 
       if (!userFromEmail) {
-        return reply.status(400).send({ message: 'Invalid email or password' })
+        throw new BadRequestError('Invalid email or password')
       }
 
       if (userFromEmail.passwordHash === null) {
-        return reply.status(400).send({
-          message: 'User does not have a password, use a social login',
-        })
+        throw new BadRequestError(
+          'User does not have a password, use a social login'
+        )
       }
 
       const isPasswordValid = await compare(
@@ -49,7 +50,7 @@ export async function authenticateWithPassword(app: FastifyInstance) {
       )
 
       if (!isPasswordValid) {
-        return reply.status(400).send({ message: 'Invalid email or password' })
+        throw new BadRequestError('Invalid email or password')
       }
 
       const token = await reply.jwtSign(
