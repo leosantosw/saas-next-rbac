@@ -9,11 +9,21 @@ export async function createAccount(app: FastifyInstance) {
     '/users',
     {
       schema: {
+        tags: ['Create User'],
+        summary: 'Create a new user account',
         body: z.object({
           name: z.string(),
           email: z.string(),
           password: z.string().min(4),
         }),
+        response: {
+          201: z.object({
+            message: z.string(),
+          }),
+          409: z.object({
+            message: z.string(),
+          }),
+        },
       },
     },
     async (request, reply) => {
