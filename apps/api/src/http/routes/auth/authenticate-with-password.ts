@@ -2,7 +2,7 @@ import { prisma } from '@/lib/prisma'
 import { compare } from 'bcryptjs'
 import { FastifyInstance } from 'fastify'
 import { ZodTypeProvider } from 'fastify-type-provider-zod'
-import z, { jwt } from 'zod'
+import { z } from 'zod'
 
 export async function authenticateWithPassword(app: FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().post(
@@ -11,6 +11,14 @@ export async function authenticateWithPassword(app: FastifyInstance) {
       schema: {
         tags: ['Auth'],
         summary: 'Auth with email and password',
+        response: {
+          201: z.object({
+            token: z.string(),
+          }),
+          400: z.object({
+            message: z.string(),
+          }),
+        },
         body: z.object({
           email: z.string(),
           password: z.string().min(4),
@@ -26,7 +34,7 @@ export async function authenticateWithPassword(app: FastifyInstance) {
       })
 
       if (!userFromEmail) {
-        return reply.status(401).send({ message: 'Invalid email or password' })
+        return reply.status(400).send({ message: 'Invalid email or password' })
       }
 
       if (userFromEmail.passwordHash === null) {
@@ -41,7 +49,7 @@ export async function authenticateWithPassword(app: FastifyInstance) {
       )
 
       if (!isPasswordValid) {
-        return reply.status(401).send({ message: 'Invalid email or password' })
+        return reply.status(400).send({ message: 'Invalid email or password' })
       }
 
       const token = await reply.jwtSign(
