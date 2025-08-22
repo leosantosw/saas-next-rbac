@@ -14,6 +14,8 @@ import { getProfile } from './routes/auth/get-profile'
 import { errorHandler } from './error-handler'
 import { requestPasswordRecover } from './routes/auth/request-password-recover'
 import { resetPassword } from './routes/auth/reset-password'
+import { authenticateWithGithub } from './routes/auth/authenticate-with-github'
+import { env } from '@repo/env'
 
 const app = fastify().withTypeProvider<ZodTypeProvider>()
 
@@ -38,7 +40,7 @@ app.register(import('@scalar/fastify-api-reference'), {
 })
 
 app.register(fastifyJwt, {
-  secret: 'my-jwt-secret',
+  secret: env.JWT_SECRET,
 })
 
 app.register(fastifyCors)
@@ -46,8 +48,9 @@ app.register(createAccount)
 app.register(getProfile)
 app.register(resetPassword)
 app.register(requestPasswordRecover)
+app.register(authenticateWithGithub)
 app.register(authenticateWithPassword)
 
-app.listen({ port: 4000 }).then(() => {
-  console.log('Server running on port 4000')
+app.listen({ port: env.SERVER_PORT }).then(() => {
+  console.log(`Server running on port ${env.SERVER_PORT}`)
 })
