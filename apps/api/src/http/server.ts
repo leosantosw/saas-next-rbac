@@ -13,6 +13,7 @@ import fastifyJwt from '@fastify/jwt'
 import { getProfile } from './routes/auth/get-profile'
 import { errorHandler } from './error-handler'
 import { requestPasswordRecover } from './routes/auth/request-password-recover'
+import { resetPassword } from './routes/auth/reset-password'
 
 const app = fastify().withTypeProvider<ZodTypeProvider>()
 
@@ -43,6 +44,7 @@ app.register(fastifyJwt, {
 app.register(fastifyCors)
 app.register(createAccount)
 app.register(getProfile)
+app.register(resetPassword)
 app.register(requestPasswordRecover)
 app.register(authenticateWithPassword)
 

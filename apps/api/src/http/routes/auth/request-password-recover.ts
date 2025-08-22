@@ -13,13 +13,13 @@ export async function requestPasswordRecover(app: FastifyInstance) {
       '/password/recover',
       {
         schema: {
-          tags: ['Auth'],
+          tags: ['Password Recovery'],
           summary: 'Request password recovery',
           body: z.object({
             email: z.string(),
           }),
           response: {
-            201: z.object(),
+            201: z.null(),
           },
         },
       },
@@ -42,6 +42,8 @@ export async function requestPasswordRecover(app: FastifyInstance) {
             userId: userFromEmail.id,
           },
         })
+
+        console.log('Code: ', code)
 
         // send recovery email with code
 
