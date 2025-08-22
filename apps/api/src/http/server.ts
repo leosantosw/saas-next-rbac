@@ -12,6 +12,7 @@ import { authenticateWithPassword } from './routes/auth/authenticate-with-passwo
 import fastifyJwt from '@fastify/jwt'
 import { getProfile } from './routes/auth/get-profile'
 import { errorHandler } from './error-handler'
+import { requestPasswordRecover } from './routes/auth/request-password-recover'
 
 const app = fastify().withTypeProvider<ZodTypeProvider>()
 
@@ -38,10 +39,12 @@ app.register(import('@scalar/fastify-api-reference'), {
 app.register(fastifyJwt, {
   secret: 'my-jwt-secret',
 })
+
 app.register(fastifyCors)
 app.register(createAccount)
-app.register(authenticateWithPassword)
 app.register(getProfile)
+app.register(requestPasswordRecover)
+app.register(authenticateWithPassword)
 
 app.listen({ port: 4000 }).then(() => {
   console.log('Server running on port 4000')
