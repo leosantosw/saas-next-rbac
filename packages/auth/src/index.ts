@@ -14,6 +14,7 @@ export const createAppAbility = createMongoAbility as CreateAbility<AppAbility>
 export * from './model/organization'
 export * from './model/project'
 export * from './model/user'
+export * from './roles'
 
 export function defineAbilityFor(user: User) {
   const builder = new AbilityBuilder(createAppAbility)
