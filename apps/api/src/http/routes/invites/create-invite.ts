@@ -19,9 +19,9 @@ export async function createInvite(app: FastifyInstance) {
         schema: {
           tags: ['Invites'],
           summary: 'Create a new invite',
-          security: [{ bearerAuth: [] }],
+          description: 'Creates a new invite for the organization.',
           body: z.object({
-            email: z.string().email(),
+            email: z.email(),
             role: rolesSchema,
           }),
           params: z.object({
@@ -29,7 +29,7 @@ export async function createInvite(app: FastifyInstance) {
           }),
           response: {
             201: z.object({
-              inviteId: z.string().uuid(),
+              inviteId: z.uuid(),
             }),
           },
         },
