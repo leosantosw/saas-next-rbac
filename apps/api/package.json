@@ -38,7 +38,7 @@
   "prettier": "@repo/prettier",
   "eslintConfig": {
     "extends": [
-      "@repo/eslint-config/node"
+      "@repo/eslint-config/next"
     ]
   }
 }
