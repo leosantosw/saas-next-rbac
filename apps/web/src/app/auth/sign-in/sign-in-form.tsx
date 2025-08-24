@@ -9,21 +9,29 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useActionState } from 'react'
 import { signInWithEmailAndPassword } from './actions'
-import { Loader2 } from 'lucide-react'
+import { AlertTriangle, Loader2 } from 'lucide-react'
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 
 export default function SignInForm() {
-  const [state, formAction, isPending] = useActionState(
+  const [{ success, message, errors }, formAction, isPending] = useActionState(
     signInWithEmailAndPassword,
-    null
+    { success: false, message: null, errors: null }
   )
   return (
     <form action={formAction} className="space-y-4">
+      {!success && message && (
+        <Alert variant="destructive">
+          <AlertTriangle className="size-4" />
+          <AlertTitle>Sign in failed!</AlertTitle>
+          <AlertDescription>{message}</AlertDescription>
+        </Alert>
+      )}
       <div className="space-y-1">
         <Label htmlFor="email">E-mail</Label>
-        <Input id="email" name="email" type="text" />
-        {state?.error.email && (
+        <Input id="email" name="email" type="email" />
+        {errors?.email && (
           <p className="text-sm font-medium text-red-500 dark:text-red-400">
-            {state?.error.email[0]}
+            {errors.email[0]}
           </p>
         )}
       </div>
@@ -31,9 +39,9 @@ export default function SignInForm() {
       <div className="space-y-1">
         <Label htmlFor="password">Password</Label>
         <Input id="password" name="password" type="password" />
-        {state?.error.password && (
+        {errors?.password && (
           <p className="text-sm font-medium text-red-500 dark:text-red-400">
-            {state?.error.password[0]}
+            {errors.password[0]}
           </p>
         )}
         <Link
