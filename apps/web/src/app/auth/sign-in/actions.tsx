@@ -13,7 +13,7 @@ const formSchema = z.object({
   }),
 })
 
-export async function signInWithEmailAndPassword(_: unknown, data: FormData) {
+export async function signInWithEmailAndPassword(data: FormData) {
   const result = formSchema.safeParse(Object.fromEntries(data))
 
   if (!result.success) {
