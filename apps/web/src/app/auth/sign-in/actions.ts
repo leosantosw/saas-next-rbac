@@ -6,7 +6,7 @@ import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import z from 'zod'
 
-const formSchema = z.object({
+const signInSchema = z.object({
   email: z.email({
     error: 'Please, provide a valid email address.',
   }),
@@ -16,10 +16,9 @@ const formSchema = z.object({
 })
 
 export async function signInWithEmailAndPassword(data: FormData) {
-  const result = formSchema.safeParse(Object.fromEntries(data))
+  const result = signInSchema.safeParse(Object.fromEntries(data))
 
   if (!result.success) {
-    z.flattenError(result.error)
     return {
       success: false,
       message: null,
