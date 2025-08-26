@@ -13,7 +13,7 @@ export async function ProfileButton() {
   return (
     <div>
       <DropdownMenu>
-        <DropdownMenuTrigger className="flex items-center gap-3">
+        <DropdownMenuTrigger className="flex cursor-pointer items-center gap-3 outline-none">
           <div className="flex flex-col items-end">
             <span className="text-base font-medium">{user.name}</span>
             <span className="text-muted-foreground text-sm">{user.email}</span>
