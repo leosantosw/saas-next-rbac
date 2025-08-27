@@ -11,13 +11,34 @@ import { ChevronsUpDown, PlusCircle } from 'lucide-react'
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
 import Link from 'next/link'
 import { getOrganizations } from '@/http/get-organizations'
+import { cookies } from 'next/headers'
 
 export async function OrganizationSwitcher() {
   const { organizations } = await getOrganizations()
+
+  const cookiesStore = await cookies()
+  const organization = cookiesStore.get('organization')?.value
+  const currentOrganization = organizations.find(
+    (org) => org.slug === organization
+  )
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="focus-visible:ring-primary flex w-[168px] cursor-pointer items-center gap-2 rounded p-1 text-sm font-medium outline-none focus-visible:ring-1">
-        <span className="text-muted-foreground">Select organization</span>
+        {currentOrganization ? (
+          <>
+            <Avatar className="size-4">
+              <AvatarImage src={currentOrganization.avatarUrl} />
+              <AvatarFallback />
+            </Avatar>
+            <span className="truncate text-left">
+              {currentOrganization.name}
+            </span>
+          </>
+        ) : (
+          <span className="text-muted-foreground">Select organization</span>
+        )}
+
         <ChevronsUpDown className="text-muted-foreground ml-auto size-5" />
       </DropdownMenuTrigger>
       <DropdownMenuContent
