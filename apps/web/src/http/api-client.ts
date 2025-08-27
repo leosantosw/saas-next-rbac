@@ -1,8 +1,9 @@
 import ky from 'ky'
 import { cookies } from 'next/headers'
+import { env } from '@repo/env'
 
 export const api = ky.create({
-  prefixUrl: 'http://localhost:4000',
+  prefixUrl: env.NEXT_PUBLIC_API_URL,
   hooks: {
     beforeRequest: [
       async (request) => {
