@@ -1,4 +1,3 @@
-import { getCurrentOrganization } from '@/auth/auth'
 import { getOrganizations } from '@/http/get-organizations'
 import { ChevronsUpDown, PlusCircle } from 'lucide-react'
 import Link from 'next/link'
@@ -12,6 +11,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from './ui/dropdown-menu'
+import { getCurrentOrganization } from '@/auth/auth'
 
 export async function OrganizationSwitcher() {
   const { organizations } = await getOrganizations()

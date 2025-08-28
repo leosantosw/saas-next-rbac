@@ -2,8 +2,9 @@ import { Header } from '@/components/header'
 
 export default function Projects() {
   return (
-    <div className="py-4">
+    <div>
       <Header />
+      <h1>Projects</h1>
     </div>
   )
 }
