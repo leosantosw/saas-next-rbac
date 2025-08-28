@@ -8,7 +8,7 @@ import { Separator } from '@/components/ui/separator'
 import { useFormState } from '@/hooks/use-form-state'
 import { AlertTriangle, Loader2 } from 'lucide-react'
 import Link from 'next/link'
-import { GithubForm } from '../GithubForm'
+import { GithubForm } from '../github-form'
 import { signInAction } from './actions'
 
 export default function SignInForm() {
