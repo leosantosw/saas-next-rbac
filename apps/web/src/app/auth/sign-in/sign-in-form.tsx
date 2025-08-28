@@ -1,6 +1,5 @@
 'use client'
 
-import githubIcon from '@/assets/github-icon.svg'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -8,15 +7,13 @@ import { Label } from '@/components/ui/label'
 import { Separator } from '@/components/ui/separator'
 import { useFormState } from '@/hooks/use-form-state'
 import { AlertTriangle, Loader2 } from 'lucide-react'
-import Image from 'next/image'
 import Link from 'next/link'
-import { signInWithEmailAndPassword } from './actions'
-import { signInWithGithub } from '../actions'
+import { GithubForm } from '../GithubForm'
+import { signInAction } from './actions'
 
 export default function SignInForm() {
-  const [{ success, message, errors }, handleSignIn, isPending] = useFormState(
-    signInWithEmailAndPassword
-  )
+  const [{ success, message, errors }, handleSignIn, isPending] =
+    useFormState(signInAction)
 
   return (
     <div className="space-y-4">
@@ -73,20 +70,7 @@ export default function SignInForm() {
 
       <Separator />
 
-      <form action={signInWithGithub}>
-        <Button
-          type="submit"
-          className="w-full cursor-pointer"
-          variant="outline"
-        >
-          <Image
-            src={githubIcon}
-            alt="Github"
-            className="mr-2 size-4 dark:invert"
-          />
-          Sign in with Github
-        </Button>
-      </form>
+      <GithubForm label="Sign in with Github" />
     </div>
   )
 }

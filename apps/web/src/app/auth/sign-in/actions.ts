@@ -15,7 +15,7 @@ const signInSchema = z.object({
   }),
 })
 
-export async function signInWithEmailAndPassword(data: FormData) {
+export async function signInAction(data: FormData) {
   const result = signInSchema.safeParse(Object.fromEntries(data))
 
   if (!result.success) {

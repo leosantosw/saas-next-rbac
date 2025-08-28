@@ -1,7 +1,12 @@
+import { Header } from '@/components/header'
+
 export default async function Home() {
   return (
-    <div>
-      <h1>Dashboard</h1>
+    <div className="space-y-4 py-4">
+      <Header />
+      <main className="mx-auto max-w-[1200px] space-y-4">
+        <h1 className="text-sm font-medium">Select an organization</h1>
+      </main>
     </div>
   )
 }

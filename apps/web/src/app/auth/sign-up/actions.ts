@@ -23,7 +23,7 @@ const signUpSchema = z
     path: ['confirm_password'],
   })
 
-export async function createNewAccount(data: FormData) {
+export async function SignUpAction(data: FormData) {
   const result = signUpSchema.safeParse(Object.fromEntries(data))
 
   if (!result.success) {

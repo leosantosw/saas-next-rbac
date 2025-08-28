@@ -2,9 +2,11 @@ import { Header } from '@/components/header'
 
 export default function Projects() {
   return (
-    <div>
+    <div className="space-y-4 py-4">
       <Header />
-      <h1>Projects</h1>
+      <main className="mx-auto max-w-[1200px]">
+        <h1>Projects</h1>
+      </main>
     </div>
   )
 }
