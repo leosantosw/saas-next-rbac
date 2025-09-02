@@ -5,7 +5,7 @@ export default function Projects() {
     <div className="space-y-4 py-4">
       <Header />
       <main className="mx-auto max-w-[1200px]">
-        <h1>Projects</h1>
+        <h1>Organization</h1>
       </main>
     </div>
   )
