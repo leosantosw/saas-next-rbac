@@ -7,9 +7,9 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { useFormState } from '@/hooks/use-form-state'
 import { AlertTriangle, Loader2 } from 'lucide-react'
-import { createOrganizationAction } from './actions'
+import { createOrganizationAction } from '../create-organization/actions'
 
-export default function OrganizationForm() {
+export function OrganizationForm() {
   const [{ success, message, errors }, handleSignIn, isPending] = useFormState(
     createOrganizationAction
   )
