@@ -7,7 +7,7 @@ import {
   SheetTitle,
 } from '@/components/ui/sheet'
 import { useRouter } from 'next/navigation'
-import OrganizationForm from '../../org/organization-form'
+import { OrganizationForm } from '../../org/organization-form'
 
 export default function CreateOrganization() {
   const router = useRouter()
