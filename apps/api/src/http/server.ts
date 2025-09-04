@@ -34,6 +34,8 @@ import { rejectInvite } from './routes/invites/reject-invite'
 import { revokeInvite } from './routes/invites/revoke-invite'
 import { getPendingInvites } from './routes/invites/get-pending-invites'
 import { getOrganizationBilling } from './routes/billing/get-organization-billing'
+import { getMembers } from './routes/members/get-members'
+import { removeMember } from './routes/members/remove-member'
 
 const app = fastify().withTypeProvider<ZodTypeProvider>()
 
@@ -78,6 +80,7 @@ app.register(authenticateWithGithub)
 app.register(authenticateWithPassword)
 app.register(createOrganization)
 app.register(getMembership)
+app.register(getMembers)
 app.register(getOrganization)
 app.register(getOrganizations)
 app.register(updateOrganization)
@@ -94,6 +97,7 @@ app.register(rejectInvite)
 app.register(revokeInvite)
 app.register(getPendingInvites)
 app.register(getOrganizationBilling)
+app.register(removeMember)
 
 app.listen({ port: env.SERVER_PORT }).then(() => {
   console.log(`Server running on port ${env.SERVER_PORT}`)
