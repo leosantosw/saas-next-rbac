@@ -1,12 +1,7 @@
-import { Header } from '@/components/header'
-
-export default function Projects() {
+export default async function Projects() {
   return (
-    <div className="space-y-4 py-4">
-      <Header />
-      <main className="mx-auto max-w-[1200px]">
-        <h1>Project</h1>
-      </main>
+    <div className="space-y-4">
+      <h1 className="text-2xl font-bold">Project</h1>
     </div>
   )
 }

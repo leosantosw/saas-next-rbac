@@ -9,7 +9,7 @@ import { useFormState } from '@/hooks/use-form-state'
 import { AlertTriangle, Loader2 } from 'lucide-react'
 import { createProjectAction } from './actions'
 
-export default function OrganizationForm() {
+export function ProjectForm() {
   const [{ success, message, errors }, handleSignIn, isPending] =
     useFormState(createProjectAction)
 
